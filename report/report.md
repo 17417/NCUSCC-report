@@ -36,7 +36,7 @@ cat ./inbox/signal-B.bin \>\> input
 
 接着我们要找到密钥，也就是含ACCESS_TOKEN的一个文件，这时候就需要grep和管道了，用find递归查找到所有文件，接着grep找到ACCESS_TOKEN,用管道连接起来，就是
 ```bash
-    find . -name "\*.\*" \| grep -r "ACCESS_TOKEN"
+find . -name "\*.\*" \| grep -r "ACCESS_TOKEN"
 ```
 我们就能很简单知道，密钥是STAR
 
@@ -133,9 +133,7 @@ WORK_DIR="${WORK_DIR:-/opt/recruitment}"
 本任务先消除掉读取count后残留的换行符，避免后续scanf无法读取，接着定义八个变量，分别为printer，scanner，router，server这四个分别对应的总时长与次数，接着进入循环。
 
 在循环里，我们先检验一下scanf是不是读到了这三个数据，要是读不到就脱离循环，同时我们使用total变量控制循环次数，如果在scanf还能读取的情况下total还没达到输入的count，那么就持续循环读取。（以下为循环流程图）
-
-![样例图片](../resource/Flowchart1.png)
-
+![流程图](../resource/Flowchart1.png)
 读取到数据后，我们先对照一下status是不是ok或repair，以及time是不是在\[0,100000\]内，如果不是total不自增，跳入下一循环，是的话继续看前面type是啥，并把time加入对应的总时长，次数加1，total加1，没有继续下一循环，每次进入下一个循环都先用getchar清除一下换行符。
 
 读取完所有的数据就该判断busiest是哪个了，我们先假定busiest是1(不初始化为0的原因是为了防止后面全都匹配不到导致无busiest，当然，我们还有另一种办法，将TempTime初始化为-1就可以了)，并定义一个TempTime变量初始化为0，用于比较，我们首先对比一下Temptime和printer的时间TotalPrinterHours，如果前者更多就保持busiest和TempTime不变，如果后者更多就把TempTime和busiest和后面那个靠齐，以此推下去将4个按顺序对比，就可以得到时长最多且最靠前的。
@@ -149,9 +147,7 @@ WORK_DIR="${WORK_DIR:-/opt/recruitment}"
 同时，我们定义一个NewPointer和OldPoint分别用于指向最新的和最旧的数据，在i未超过8时，keep正常增加，而当keep达到8后，keep不再增加，同时OldPointer指向对i+1取8的余数，这样OldPointer始终指向NewPointer前面的一个，最快被覆盖的就是最早的那个
 
 以题目里的样例为例
-
 ![样例图片](../resource/example.png)
-
 #### 多文件统计工具
 
 这个任务要求修复由多个文件组成的文件统计工具，在main()里，使用的格式是：
