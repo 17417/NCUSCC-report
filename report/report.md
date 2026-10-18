@@ -134,8 +134,7 @@ WORK_DIR="${WORK_DIR:-/opt/recruitment}"
 
 在循环里，我们先检验一下scanf是不是读到了这三个数据，要是读不到就脱离循环，同时我们使用total变量控制循环次数，如果在scanf还能读取的情况下total还没达到输入的count，那么就持续循环读取。（以下为循环流程图）
 
-<img src="./Flowchart1.png/"
-style="width:3.13333in;height:7.64583in" />
+![样例图片](../resource/Flowchart1.png)
 
 读取到数据后，我们先对照一下status是不是ok或repair，以及time是不是在\[0,100000\]内，如果不是total不自增，跳入下一循环，是的话继续看前面type是啥，并把time加入对应的总时长，次数加1，total加1，没有继续下一循环，每次进入下一个循环都先用getchar清除一下换行符。
 
@@ -151,8 +150,7 @@ style="width:3.13333in;height:7.64583in" />
 
 以题目里的样例为例
 
-!(图片)["../source/example.png"]
-
+![样例图片](../resource/example.png)
 
 #### 多文件统计工具
 
